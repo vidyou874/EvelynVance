@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import './Footer.css';
 
 const Footer: React.FC = () => {
@@ -9,6 +9,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-glow"></div>
+      <div className="footer-glow-right"></div>
       <div className="container footer-content">
         <div className="footer-brand-column">
           <Link to="/" className="logo-container">
@@ -31,42 +32,46 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="footer-links-column">
-          <h4 className="footer-title">Pages</h4>
+          <h4 className="footer-title">Navigation</h4>
           <ul className="footer-links-list">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Me</Link></li>
+            <li><Link to="/about">About</Link></li>
             <li><Link to="/subjects">Subjects</Link></li>
+            <li><Link to="/subjects">Courses</Link></li>
             <li><Link to="/achievements">Achievements</Link></li>
-            <li><Link to="/testimonials">Testimonials</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
 
         <div className="footer-links-column">
-          <h4 className="footer-title">Subjects</h4>
+          <h4 className="footer-title">Courses</h4>
           <ul className="footer-links-list">
-            <li><Link to="/subjects">AP Calculus AB/BC</Link></li>
-            <li><Link to="/subjects">College Physics</Link></li>
-            <li><Link to="/subjects">Computer Science</Link></li>
-            <li><Link to="/subjects">SAT/ACT Math Prep</Link></li>
-            <li><Link to="/subjects">IB Mathematics</Link></li>
+            <li><Link to="/course/calculus">AP Calculus AB/BC</Link></li>
+            <li><Link to="/course/physics">College Physics</Link></li>
+            <li><Link to="/course/cs">Computer Science</Link></li>
+            <li><Link to="/course/sat">SAT Math Prep</Link></li>
+            <li><Link to="/course/ib">IB Mathematics</Link></li>
           </ul>
         </div>
 
         <div className="footer-contact-column">
-          <h4 className="footer-title">Studio / Office</h4>
+          <h4 className="footer-title">Contact</h4>
           <ul className="footer-contact-list">
             <li>
-              <MapPin size={18} className="contact-icon" />
-              <span>450 Sutter St, Suite 1200, San Francisco, CA 94108</span>
+              <Mail size={18} className="contact-icon" />
+              <span>dr.vance@evelyncoaching.com</span>
             </li>
             <li>
               <Phone size={18} className="contact-icon" />
               <span>(415) 555-8901</span>
             </li>
             <li>
-              <Mail size={18} className="contact-icon" />
-              <span>dr.vance@evelyncoaching.com</span>
+              <Clock size={18} className="contact-icon" />
+              <span>Mon – Fri, 9 AM – 7 PM PST</span>
+            </li>
+            <li>
+              <MapPin size={18} className="contact-icon" />
+              <span>San Francisco, CA 94108</span>
             </li>
           </ul>
         </div>
@@ -75,10 +80,11 @@ const Footer: React.FC = () => {
       <div className="container footer-bottom">
         <div className="divider"></div>
         <div className="footer-bottom-inner">
-          <p>© {currentYear} Dr. Evelyn Vance. All rights reserved.</p>
+          <p>© {currentYear} Evelyn Vance. All rights reserved.</p>
           <div className="footer-policies">
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacy">Cookies</Link>
           </div>
         </div>
       </div>

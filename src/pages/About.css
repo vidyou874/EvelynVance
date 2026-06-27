@@ -145,34 +145,56 @@
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px; /* Cleaner spacing between timeline cards */
   max-width: 800px;
   margin: 0 auto;
   position: relative;
 }
 
+/* Beautiful vertical gradient timeline line */
 .timeline-list::before {
   content: '';
   position: absolute;
-  left: 50px;
-  top: 20px;
-  bottom: 20px;
+  left: 20px;
+  top: 10px;
+  bottom: 10px;
   width: 2px;
-  background: rgba(73, 187, 189, 0.2);
+  background: linear-gradient(180deg, var(--accent-primary) 0%, rgba(73, 187, 189, 0.1) 100%);
 }
 
 .timeline-card {
   display: flex;
-  gap: 32px;
+  gap: 28px;
   align-items: flex-start;
   padding: 28px;
   border-radius: var(--radius-lg);
-  margin-left: 20px;
+  margin-left: 56px; /* Position card to the right of the vertical line */
+  position: relative;
+}
+
+/* Custom indicator dot centered on the vertical line */
+.timeline-card::before {
+  content: '';
+  position: absolute;
+  left: -43px; /* Centers 14px dot on the 2px line at left:20px (56px - 43px = 13px left of card, which aligns with 20px line of list) */
+  top: 36px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid var(--accent-primary);
+  z-index: 3;
+  transition: all var(--transition-fast);
+}
+
+.timeline-card:hover::before {
+  background: var(--accent-primary);
+  transform: scale(1.2);
 }
 
 .timeline-badge-year {
   background: rgba(73, 187, 189, 0.08);
-  border: 1px solid rgba(73, 187, 189, 0.3);
+  border: 1px solid rgba(73, 187, 189, 0.25);
   color: var(--accent-primary);
   font-family: var(--font-heading);
   font-weight: 700;
@@ -180,21 +202,24 @@
   padding: 6px 14px;
   border-radius: var(--radius-full);
   white-space: nowrap;
-  min-width: 110px;
+  min-width: 100px;
   text-align: center;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .timeline-card-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .timeline-item-title {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.3;
 }
 
 .timeline-item-sub {
@@ -206,7 +231,7 @@
 
 .timeline-item-desc {
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-secondary);
 }
 
@@ -294,17 +319,30 @@
   
   .timeline-list::before {
     left: 12px;
+    top: 5px;
+    bottom: 5px;
   }
   
   .timeline-card {
     flex-direction: column;
     gap: 16px;
-    margin-left: 30px; /* Clear the timeline vertical line cleanly */
-    padding: 20px;
+    margin-left: 32px; /* Position card to the right of mobile line */
+    padding: 20px 16px;
+  }
+
+  .timeline-card::before {
+    left: -28px; /* Centers dot at left:12px (32px - 28px = 4px left edge of 16px dot, centering it on the 12px line) */
+    top: 24px;
+    width: 14px;
+    height: 14px;
+    border-width: 3px;
   }
   
   .timeline-badge-year {
     align-self: flex-start;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    min-width: 90px;
   }
 }
 

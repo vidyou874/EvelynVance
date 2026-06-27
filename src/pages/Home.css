@@ -629,8 +629,9 @@
 
 /* Bottom CTA Card styling */
 .bottom-cta-section {
-  padding: 80px 0;
-  background-color: var(--bg-secondary);
+  margin-bottom:4em;
+  padding: 40px 0 40px 0;
+  /* background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); */
 }
 
 .bottom-cta-card {
