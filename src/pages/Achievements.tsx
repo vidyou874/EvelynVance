@@ -71,7 +71,9 @@ const Achievements: React.FC = () => {
       <section className="ach-body-section container">
         <div className="ach-section-subtitle-row">
           <h2 className="ach-section-title">Verified Certifications</h2>
-          <div className="divider"></div>
+          
+          {/* <div className="divider"></div> */}
+          
         </div>
 
         <div className="cert-grid">
@@ -95,7 +97,7 @@ const Achievements: React.FC = () => {
       <section className="ach-body-section container" style={{ marginTop: '60px' }}>
         <div className="ach-section-subtitle-row">
           <h2 className="ach-section-title">Honors & Awards</h2>
-          <div className="divider"></div>
+          {/* <div className="divider"></div>  */}
         </div>
 
         <div className="awards-grid">
