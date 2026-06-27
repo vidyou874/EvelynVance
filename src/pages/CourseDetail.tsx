@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Star, Play, Check, Clock, FileText, Smartphone, Award, Infinity, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import {
+  Star, Play, Check, Clock, FileText, Smartphone, Award,
+  Infinity, ArrowLeft, ChevronDown, ChevronUp, Shield, Share2, Tag
+} from 'lucide-react';
+import CourseReviews from '../components/CourseReviews';
+import { COURSE_IMAGES, DEFAULT_COURSE_IMAGE } from '../config/courseImages';
 import './CourseDetail.css';
 
 interface CourseData {
@@ -29,7 +34,6 @@ const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const courseId = id || 'calculus';
 
-  // Hardcoded courses to match Subjects page
   const courses: Record<string, CourseData> = {
     calculus: {
       id: 'calculus',
@@ -112,10 +116,10 @@ const CourseDetail: React.FC = () => {
           lessons: ['1D Motion & Constant Acceleration', 'Vectors & Projectile Motion', 'Relative Velocity & Reference Frames']
         },
         {
-          sectionTitle: 'Newton\'s Laws of Motion',
+          sectionTitle: "Newton's Laws of Motion",
           lecturesCount: 10,
           duration: '4.5 hours',
-          lessons: ['Inertia & Newton\'s Second Law', 'Friction & Circular Motion', 'Inclined Planes & Pulley Systems']
+          lessons: ["Inertia & Newton's Second Law", 'Friction & Circular Motion', 'Inclined Planes & Pulley Systems']
         },
         {
           sectionTitle: 'Work, Energy, and Power',
@@ -170,7 +174,7 @@ const CourseDetail: React.FC = () => {
           sectionTitle: 'Trees & Graph Theory',
           lecturesCount: 16,
           duration: '7.5 hours',
-          lessons: ['Binary Search Tree Operations', 'Recursion & Backtracking', 'Graph Traversals (BFS & DFS)', 'Dijkstra\'s Shortest Path Algorithm']
+          lessons: ['Binary Search Tree Operations', 'Recursion & Backtracking', 'Graph Traversals (BFS & DFS)', "Dijkstra's Shortest Path Algorithm"]
         },
         {
           sectionTitle: 'Dynamic Programming Basics',
@@ -191,7 +195,7 @@ const CourseDetail: React.FC = () => {
       ratingCount: 210,
       lectures: 30,
       totalHours: '12 hours',
-      description: 'standardized tests do not just test your math skills; they test your speed and endurance. This preparation course delivers a complete breakdown of trick questions, formulas, and calculator shortcuts that will help you solve problems in seconds.',
+      description: 'Standardized tests do not just test your math skills — they test your speed and endurance. This preparation course delivers a complete breakdown of trick questions, formulas, and calculator shortcuts that will help you solve problems in seconds.',
       whatYouWillLearn: [
         'Solve algebraic and geometry questions in under 40 seconds.',
         'Identify common trick question formulations immediately.',
@@ -199,9 +203,7 @@ const CourseDetail: React.FC = () => {
         'Manage your testing timeline effectively under pressure.',
         'Access custom practice worksheets mapping to the Digital SAT format.'
       ],
-      requirements: [
-        'Basic high school Algebra 1 and Geometry.'
-      ],
+      requirements: ['Basic high school Algebra 1 and Geometry.'],
       syllabus: [
         {
           sectionTitle: 'Heart of Algebra & Systems',
@@ -242,9 +244,7 @@ const CourseDetail: React.FC = () => {
         'Leverage your graphing calculator for advanced calculus and probability.',
         'Express complex algebra and proof patterns clearly on Paper 1 and 2.'
       ],
-      requirements: [
-        'Enrollment in standard IB Diploma Mathematics (HL or SL).'
-      ],
+      requirements: ['Enrollment in standard IB Diploma Mathematics (HL or SL).'],
       syllabus: [
         {
           sectionTitle: 'Core Algebraic Proofs & Functions',
@@ -253,10 +253,10 @@ const CourseDetail: React.FC = () => {
           lessons: ['Mathematical Induction Proofs', 'Composite & Inverse Functions', 'Logarithmic Equations']
         },
         {
-          sectionTitle: 'Calculus, Trigonometry & Complex Numbers',
+          sectionTitle: "Calculus, Trigonometry & Complex Numbers",
           lecturesCount: 16,
           duration: '7.0 hours',
-          lessons: ['Trigonometric Identities & Equations', 'Complex Numbers & De Moivre\'s Theorem', 'Integration & Limits (HL)']
+          lessons: ["Trigonometric Identities & Equations", "Complex Numbers & De Moivre's Theorem", 'Integration & Limits (HL)']
         },
         {
           sectionTitle: 'The IA: Brainstorming & Writing Blueprint',
@@ -269,19 +269,30 @@ const CourseDetail: React.FC = () => {
   };
 
   const course = courses[courseId] || courses.calculus;
-  const isEnrolled = courseId === 'calculus'; // Calculus is marked as Enrolled
+  const isEnrolled = courseId === 'calculus';
+  const heroImage = COURSE_IMAGES[courseId] ?? DEFAULT_COURSE_IMAGE;
 
-  // Accordion state
   const [openSection, setOpenSection] = useState<number | null>(0);
+  const [couponInput, setCouponInput] = useState('');
+  const [couponApplied, setCouponApplied] = useState(false);
 
   const toggleSection = (index: number) => {
     setOpenSection(openSection === index ? null : index);
   };
 
+  const discountPct = Math.round(
+    ((course.originalPrice - course.discountPrice) / course.originalPrice) * 100
+  );
+
   return (
     <div className="course-detail-page">
-      {/* Dark Banner Header */}
-      <div className="course-banner-dark">
+
+      {/* ── Hero Banner with Subject Image ── */}
+      <div
+        className="course-banner-hero"
+        style={{ backgroundImage: `url('${heroImage.heroUrl}')` }}
+      >
+        <div className="course-banner-overlay" />
         <div className="container course-banner-content">
           <div className="banner-left">
             <Link to="/subjects" className="course-breadcrumb-back">
@@ -292,20 +303,22 @@ const CourseDetail: React.FC = () => {
             </div>
             <h1 className="course-header-title">{course.title}</h1>
             <p className="course-header-subtitle">{course.subtitle}</p>
-            
+
             <div className="course-rating-row">
               <span className="rating-num">{course.rating}</span>
               <div className="rating-stars">
                 {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    size={16} 
-                    fill={i < Math.floor(course.rating) ? 'var(--accent-secondary)' : 'transparent'} 
-                    color="var(--accent-secondary)" 
+                  <Star
+                    key={i}
+                    size={16}
+                    fill={i < Math.floor(course.rating) ? '#ff914d' : 'transparent'}
+                    color="#ff914d"
                   />
                 ))}
               </div>
-              <span className="rating-total-txt">({course.ratingCount} ratings) • {course.lectures} lectures</span>
+              <span className="rating-total-txt">
+                ({course.ratingCount} ratings) • {course.lectures} lectures
+              </span>
             </div>
 
             <div className="course-instructor-info">
@@ -317,9 +330,12 @@ const CourseDetail: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content Layout */}
+      {/* ── Main Content ── */}
       <div className="container course-main-layout">
+
+        {/* ── Left Column ── */}
         <div className="course-left-column">
+
           {/* What you'll learn */}
           <div className="what-learn-card">
             <h2 className="section-title-sm">What you'll learn</h2>
@@ -333,7 +349,7 @@ const CourseDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Syllabus/Course Content Accordion */}
+          {/* Syllabus Accordion */}
           <div className="course-syllabus-section">
             <h2 className="section-title-sm" style={{ marginBottom: '8px' }}>Course content</h2>
             <div className="syllabus-meta-stats">
@@ -350,7 +366,9 @@ const CourseDetail: React.FC = () => {
                         {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                         <h3>{section.sectionTitle}</h3>
                       </div>
-                      <span className="section-meta-right">{section.lessons.length} lectures • {section.duration}</span>
+                      <span className="section-meta-right">
+                        {section.lessons.length} lectures • {section.duration}
+                      </span>
                     </div>
 
                     {isOpen && (
@@ -387,20 +405,24 @@ const CourseDetail: React.FC = () => {
             <h2 className="section-title-sm">Description</h2>
             <p className="description-text">{course.description}</p>
           </div>
+
+          {/* ── Reviews ── */}
+          <CourseReviews courseId={courseId} isEnrolled={isEnrolled} />
         </div>
 
-        {/* Sidebar Purchase Box */}
+        {/* ── Sidebar Purchase Box ── */}
         <div className="course-right-column">
-          <div className="purchase-sticky-box card-glass">
+          <div className="purchase-sticky-box">
+            {/* Preview Thumbnail */}
             <div className="course-preview-thumb">
-              <img 
-                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=400&h=225" 
-                alt="Course Preview" 
+              <img
+                src={heroImage.thumbUrl}
+                alt={heroImage.alt}
                 className="thumb-img"
               />
               <div className="play-overlay">
                 <div className="play-button-circle">
-                  <Play size={20} fill="currentColor" />
+                  <Play size={22} fill="currentColor" />
                 </div>
                 <span>Preview this course</span>
               </div>
@@ -408,39 +430,73 @@ const CourseDetail: React.FC = () => {
 
             <div className="purchase-card-body">
               {isEnrolled ? (
-                // Enrolled State
+                /* ── Enrolled State ── */
                 <div className="enrolled-status-block">
                   <div className="enrolled-badge">
                     <Check size={16} /> Enrolled
                   </div>
-                  <span className="validity-text">Access valid till: <strong>Dec 31, 2026</strong></span>
-                  
-                  <button className="btn btn-primary w-full start-learning-btn" onClick={() => alert('Launching course player... Welcome back!')}>
+                  <p className="validity-text">
+                    Access valid till: <strong>Dec 31, 2026</strong>
+                  </p>
+                  <button
+                    className="btn btn-primary start-learning-btn"
+                    onClick={() => alert('Launching course player... Welcome back!')}
+                  >
                     Go to Course Player
                   </button>
-                  <span className="guarantee-text">Includes lifetime course materials updates</span>
+                  <p className="guarantee-text">Includes lifetime course material updates</p>
                 </div>
               ) : (
-                // Purchase State
+                /* ── Purchase State ── */
                 <div className="purchase-payment-block">
                   <div className="price-tag-row">
                     <span className="discount-price">${course.discountPrice}</span>
                     <span className="original-price">${course.originalPrice}</span>
-                    <span className="discount-percent">
-                      {Math.round(((course.originalPrice - course.discountPrice) / course.originalPrice) * 100)}% Off
-                    </span>
+                    <span className="discount-percent">{discountPct}% Off</span>
                   </div>
 
                   <div className="purchase-actions">
-                    <button className="btn btn-primary w-full buy-now-btn" onClick={() => alert(`Redirecting to checkout for ${course.title}...`)}>
+                    <button
+                      className="btn btn-primary buy-now-btn"
+                      onClick={() => alert(`Redirecting to checkout for ${course.title}...`)}
+                    >
                       Buy Now
                     </button>
-                    <button className="btn btn-secondary w-full add-cart-btn" onClick={() => alert('Added to shopping cart.')}>
+                    <button
+                      className="btn btn-secondary add-cart-btn"
+                      onClick={() => alert('Added to shopping cart.')}
+                    >
                       Add to Cart
                     </button>
                   </div>
 
-                  <span className="guarantee-text">30-Day Money-Back Guarantee</span>
+                  {/* Coupon input */}
+                  <div className="coupon-row">
+                    <div className="coupon-input-wrap">
+                      <Tag size={14} className="coupon-tag-icon" />
+                      <input
+                        type="text"
+                        className="coupon-input"
+                        placeholder="Enter coupon code"
+                        value={couponInput}
+                        onChange={(e) => setCouponInput(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      className="btn btn-secondary coupon-apply-btn"
+                      onClick={() => { if (couponInput.trim()) setCouponApplied(true); }}
+                    >
+                      Apply
+                    </button>
+                  </div>
+                  {couponApplied && (
+                    <p className="coupon-success">✓ Coupon applied successfully!</p>
+                  )}
+
+                  <div className="guarantee-banner">
+                    <Shield size={16} />
+                    <span>30-Day Money-Back Guarantee</span>
+                  </div>
                 </div>
               )}
 
@@ -469,9 +525,11 @@ const CourseDetail: React.FC = () => {
                 </div>
               </div>
 
+              {/* Share */}
               <div className="share-course-row">
-                <span className="coupon-code">Share course</span>
-                <span className="coupon-code">Apply Coupon</span>
+                <button className="share-btn">
+                  <Share2 size={14} /> Share course
+                </button>
               </div>
             </div>
           </div>

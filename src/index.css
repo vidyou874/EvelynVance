@@ -30,9 +30,10 @@
   /* Layout */
   --header-height: 80px;
   --container-width: 1200px;
-  --radius-sm: 6px;
+  --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
+  --radius-card: 16px;
   --radius-full: 9999px;
   
   /* Transitions */
@@ -135,12 +136,15 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   padding: 12px 28px;
+  min-height: 48px;
   border-radius: var(--radius-full);
   border: none;
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
 }
+
+.w-full { width: 100%; }
 
 .btn-primary {
   background: var(--accent-primary);
@@ -177,7 +181,7 @@ a {
 .card-glass {
   background: #ffffff; /* Solid white surface for premium look */
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   padding: 32px;
   transition: all var(--transition-normal);
 }
@@ -290,4 +294,34 @@ a {
   .card-glass {
     padding: 24px 16px; /* Less padding on small screens */
   }
+}
+
+/* Global Section Headers & Alignment Utilities */
+.text-center {
+  text-align: center !important;
+}
+
+.section-header {
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-header.text-center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--text-secondary);
 }

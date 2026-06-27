@@ -409,3 +409,40 @@
 .subject-block-card:hover .subject-view-details-row svg {
   transform: translateX(4px);
 }
+
+/* ── Mobile Card Polish ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .subject-block-card {
+    padding: 22px 18px;
+  }
+  .subject-header-row {
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .subject-icon-box {
+    width: 44px;
+    height: 44px;
+  }
+  .subject-title-text {
+    font-size: 1.1rem;
+  }
+  .subject-description {
+    font-size: 0.88rem;
+  }
+  .subject-feature-item {
+    font-size: 0.83rem;
+  }
+  .estimator-box {
+    padding: 24px 18px;
+  }
+  .est-result-card {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .subject-block-card {
+    padding: 18px 14px;
+  }
+}
+

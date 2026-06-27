@@ -206,3 +206,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .cert-card,
+  .award-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+  .ach-header-section {
+    padding: 60px 0 32px;
+  }
+  .ach-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .cert-card,
+  .award-card {
+    padding: 18px 14px;
+  }
+}
+

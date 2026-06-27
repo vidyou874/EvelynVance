@@ -257,10 +257,32 @@
   .contact-title { font-size: 2.2rem; }
   .contact-form-side { padding: 24px; }
   .faq-question-text { font-size: 1.05rem; }
+  .contact-info-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 480px) {
-  .contact-form-side { padding: 20px 16px; }
-  .faq-item-card { padding: 16px; }
-  .faq-question-text { font-size: 0.95rem; }
+  .contact-form-side {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+  .contact-info-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+  .faq-item-card { padding: 16px 14px; }
+  .faq-question-text { font-size: 0.92rem; }
+  .contact-title { font-size: 1.9rem; }
 }
+
+@media (max-width: 360px) {
+  .contact-form-side {
+    padding: 16px 12px;
+  }
+  .contact-info-card {
+    padding: 16px 14px;
+  }
+}
+

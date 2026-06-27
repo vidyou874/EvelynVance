@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Subjects from './pages/Subjects';
 import Achievements from './pages/Achievements';
-import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -36,7 +35,6 @@ const App: React.FC = () => {
           <Route path="/subjects" element={<Subjects />} />
           <Route path="/course/:id" element={<CourseDetail />} />
           <Route path="/achievements" element={<Achievements />} />
-          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

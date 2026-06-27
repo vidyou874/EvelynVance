@@ -45,7 +45,6 @@ const Header: React.FC = () => {
     { label: 'About Me', path: '/about' },
     { label: 'Subjects', path: '/subjects' },
     { label: 'Achievements', path: '/achievements' },
-    { label: 'Testimonials', path: '/testimonials' },
     { label: 'Contact', path: '/contact' }
   ];
 

@@ -295,25 +295,6 @@
   background-color: var(--bg-secondary);
 }
 
-.section-header {
-  margin-bottom: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-}
-
-.section-subtitle {
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  color: var(--text-secondary);
-}
-
 .philosophy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -833,3 +814,82 @@
   .fw-2 { left: 0; bottom: 0; }
   .fw-3 { right: 0; top: 35%; }
 }
+
+/* ── Mobile Card Polish (320px–480px) ───────────────────────────────── */
+@media (max-width: 480px) {
+  /* Philosophy / Methodology cards */
+  .philosophy-card-item {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+  .philosophy-icon-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .philosophy-card-title {
+    font-size: 1rem;
+  }
+  .philosophy-card-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Stats block */
+  .stats-inner-box {
+    padding: 24px 16px;
+    border-radius: 14px;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+  }
+
+  /* Testimonial cards */
+  .home-testimonial-card {
+    padding: 20px 18px;
+  }
+  .testimonial-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  /* FAQ items */
+  .faq-item-card {
+    padding: 18px 16px;
+  }
+  .faq-question-text {
+    font-size: 0.92rem;
+    line-height: 1.4;
+    padding-right: 8px;
+  }
+  .faq-answer-text {
+    font-size: 0.88rem;
+  }
+
+  /* Bottom CTA */
+  .bottom-cta-card {
+    padding: 32px 20px;
+    border-radius: 16px;
+  }
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  .cta-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .philosophy-card-item {
+    padding: 20px 16px;
+  }
+  .home-testimonial-card {
+    padding: 18px 14px;
+  }
+  .stats-inner-box {
+    padding: 20px 14px;
+  }
+}
+

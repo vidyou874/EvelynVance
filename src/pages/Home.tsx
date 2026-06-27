@@ -305,11 +305,7 @@ const Home: React.FC = () => {
                 <span className="author-lbl">Parent of SAT Student</span>
               </div>
             </div>
-          </div>
-          
-          <div className="text-center testimonial-more-btn-row">
-            <Link to="/testimonials" className="btn btn-secondary">Read All Testimonials</Link>
-          </div>
+        </div>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+/* ── Page Base ──────────────────────────────────────────────────────── */
 .course-detail-page {
   padding-top: var(--header-height);
   background-color: var(--bg-primary);
@@ -5,25 +6,42 @@
   min-height: 100vh;
 }
 
-/* Dark Banner */
-.course-banner-dark {
-  background-color: var(--text-primary);
-  color: #ffffff;
-  padding: 40px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* ── Hero Banner with Background Image ─────────────────────────────── */
+.course-banner-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  padding: 60px 0 56px;
+  overflow: hidden;
+}
+
+/* Dark gradient overlay for text readability */
+.course-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(20, 22, 50, 0.92) 0%,
+    rgba(20, 22, 50, 0.80) 55%,
+    rgba(20, 22, 50, 0.60) 100%
+  );
+  z-index: 0;
 }
 
 .course-banner-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  position: relative;
 }
 
 .banner-left {
-  max-width: 800px;
+  max-width: 760px;
 }
 
+/* ── Breadcrumb & Back ──────────────────────────────────────────────── */
 .course-breadcrumb-back {
   display: inline-flex;
   align-items: center;
@@ -31,50 +49,54 @@
   color: var(--accent-primary);
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  transition: color 0.2s ease;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  transition: color var(--transition-fast);
 }
 
 .course-breadcrumb-back:hover {
-  color: #3ca8aa;
+  color: #ffffff;
 }
 
 .course-breadcrumbs {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  margin-bottom: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
+/* ── Banner Text ────────────────────────────────────────────────────── */
 .course-header-title {
   font-family: var(--font-heading);
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 12px;
+  color: #ffffff;
+  margin-bottom: 14px;
 }
 
 .course-header-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 16px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 18px;
+  max-width: 640px;
 }
 
 .course-rating-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .rating-num {
-  color: var(--accent-secondary);
-  font-weight: 700;
-  font-size: 1.1rem;
+  color: #ff914d;
+  font-weight: 800;
+  font-size: 1rem;
 }
 
 .rating-stars {
@@ -83,12 +105,13 @@
 }
 
 .rating-total-txt {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .course-instructor-info {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -100,84 +123,83 @@
   font-weight: 700;
 }
 
-.updated-date {
-  color: rgba(255, 255, 255, 0.85);
-}
-
+.updated-date,
 .lang-label {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.75);
 }
 
-/* Layout Grid */
+/* ── Main Layout Grid ───────────────────────────────────────────────── */
 .course-main-layout {
   display: grid;
-  grid-template-columns: 1.4fr 0.75fr;
+  grid-template-columns: 1.45fr 0.72fr;
   gap: 48px;
-  padding-top: 32px;
+  padding-top: 36px;
   padding-bottom: 80px;
   align-items: flex-start;
   position: relative;
 }
 
 .course-left-column {
-  max-width: 700px;
+  min-width: 0;
 }
 
-/* What you'll learn */
+/* ── What You'll Learn Card ─────────────────────────────────────────── */
 .what-learn-card {
-  border: 1px solid #d1d7dc;
-  border-radius: 8px;
-  padding: 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 28px;
   margin-bottom: 32px;
-  background-color: #ffffff;
+  background-color: var(--bg-secondary);
 }
 
 .section-title-sm {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: var(--text-primary);
 }
 
 .what-learn-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .what-learn-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   font-size: 0.9rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
 .check-icon {
-  color: #1c1d1f;
-  margin-top: 3px;
+  color: var(--accent-primary);
+  margin-top: 2px;
   flex-shrink: 0;
 }
 
-/* Syllabus Accordion */
+/* ── Syllabus Accordion ─────────────────────────────────────────────── */
 .course-syllabus-section {
   margin-bottom: 32px;
 }
 
 .syllabus-meta-stats {
   font-size: 0.85rem;
-  color: #6a6f73;
+  color: var(--text-muted);
   margin-bottom: 16px;
 }
 
 .syllabus-accordion {
-  border: 1px solid #d1d7dc;
-  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   overflow: hidden;
 }
 
 .syllabus-section-card {
-  border-bottom: 1px solid #d1d7dc;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .syllabus-section-card:last-child {
@@ -185,50 +207,57 @@
 }
 
 .syllabus-section-header {
-  background-color: #f7f9fa;
-  padding: 16px 24px;
+  background-color: var(--bg-secondary);
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.2s ease;
+  transition: background-color var(--transition-fast);
+  gap: 12px;
 }
 
 .syllabus-section-header:hover {
-  background-color: #e4e8eb;
+  background-color: var(--bg-tertiary);
 }
 
 .section-title-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .section-title-left h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   margin: 0;
+  color: var(--text-primary);
 }
 
 .section-meta-right {
-  font-size: 0.85rem;
-  color: #6a6f73;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .syllabus-lessons-list {
   background-color: #ffffff;
-  padding: 12px 24px;
-  border-top: 1px solid #d1d7dc;
+  padding: 8px 20px;
+  border-top: 1px solid var(--border-color);
 }
 
 .syllabus-lesson-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #e8ecf0;
-  font-size: 0.9rem;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--bg-tertiary);
+  font-size: 0.88rem;
+  gap: 12px;
 }
 
 .syllabus-lesson-item:last-child {
@@ -238,40 +267,43 @@
 .lesson-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  min-width: 0;
+}
+
+.lesson-left span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .play-icon {
-  color: #6a6f73;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
 .lesson-time {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--accent-primary);
   cursor: pointer;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
-/* Requirements & Description */
+/* ── Requirements & Description ─────────────────────────────────────── */
 .requirements-card,
 .description-card {
   margin-bottom: 32px;
-  border-bottom: 1px solid #e8ecf0;
-  padding-bottom: 24px;
-}
-
-.requirements-card:last-child,
-.description-card:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 28px;
 }
 
 .requirements-list {
   padding-left: 20px;
   margin: 0;
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: var(--text-secondary);
 }
 
 .requirements-list li {
@@ -280,11 +312,11 @@
 
 .description-text {
   font-size: 0.95rem;
-  line-height: 1.6;
-  color: #1c1d1f;
+  line-height: 1.7;
+  color: var(--text-secondary);
 }
 
-/* Sidebar Purchase Card */
+/* ── Sidebar Purchase Card ───────────────────────────────────────────── */
 .course-right-column {
   position: sticky;
   top: 100px;
@@ -293,9 +325,9 @@
 
 .purchase-sticky-box {
   background: #ffffff;
-  border: 1px solid #d1d7dc;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
   overflow: hidden;
 }
 
@@ -304,102 +336,107 @@
   width: 100%;
   aspect-ratio: 16/9;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .thumb-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.course-preview-thumb:hover .thumb-img {
+  transform: scale(1.04);
 }
 
 .play-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  gap: 12px;
+  gap: 10px;
   font-weight: 700;
-  font-size: 0.95rem;
-  opacity: 0.9;
-  transition: opacity 0.2s ease;
+  font-size: 0.88rem;
+  transition: background var(--transition-fast);
 }
 
 .course-preview-thumb:hover .play-overlay {
-  opacity: 1;
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .play-button-circle {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background-color: #ffffff;
+  background: #ffffff;
   color: var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast);
 }
 
+.course-preview-thumb:hover .play-button-circle {
+  transform: scale(1.08);
+}
+
+/* ── Purchase Card Body ──────────────────────────────────────────────── */
 .purchase-card-body {
   padding: 24px;
 }
 
-/* Enrolled State Details */
+/* Enrolled State */
 .enrolled-status-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: 12px;
   margin-bottom: 24px;
-  padding: 16px;
-  background-color: #f7f9fa;
-  border-radius: 6px;
-  border: 1px solid #e4e8eb;
+  padding: 20px 16px;
+  background: linear-gradient(135deg, rgba(73,187,189,0.06) 0%, rgba(73,187,189,0.02) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(73, 187, 189, 0.2);
 }
 
 .enrolled-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: #e2fbeb;
-  color: #0f7634;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--accent-primary), #3ca8aa);
+  color: #ffffff;
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  font-size: 0.9rem;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
 }
 
 .validity-text {
-  display: block;
-  font-size: 0.9rem;
-  color: #6a6f73;
-  margin-bottom: 16px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 0;
 }
 
 .start-learning-btn {
-  background: var(--accent-gradient) !important;
-  color: #ffffff !important;
-  border: none !important;
-  padding: 14px 24px !important;
+  width: 100%;
+  min-height: 52px;
   font-size: 1rem !important;
   font-weight: 700 !important;
 }
 
-.start-learning-btn:hover {
-  background: var(--accent-gradient-hover) !important;
-}
-
-/* Purchase State Details */
+/* Purchase State */
 .price-tag-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .discount-price {
@@ -410,15 +447,18 @@
 }
 
 .original-price {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-muted);
   text-decoration: line-through;
 }
 
 .discount-percent {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--accent-secondary);
-  font-weight: 600;
+  font-weight: 700;
+  background: rgba(255, 145, 77, 0.1);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
 }
 
 .purchase-actions {
@@ -429,12 +469,11 @@
 }
 
 .buy-now-btn {
-  background: var(--accent-gradient) !important;
-  color: #ffffff !important;
-  border: none !important;
-  padding: 14px 24px !important;
+  width: 100%;
+  min-height: 52px;
   font-size: 1rem !important;
   font-weight: 700 !important;
+  background: var(--accent-gradient) !important;
 }
 
 .buy-now-btn:hover {
@@ -442,100 +481,221 @@
 }
 
 .add-cart-btn {
-  background-color: #ffffff !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--text-primary) !important;
-  padding: 14px 24px !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
+  width: 100%;
+  min-height: 48px;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
 }
 
-.add-cart-btn:hover {
-  background-color: rgba(37, 38, 65, 0.04) !important;
+/* Coupon Row */
+.coupon-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.coupon-input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.coupon-tag-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.coupon-input {
+  width: 100%;
+  padding: 10px 12px 10px 32px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  background: var(--bg-secondary);
+  transition: border-color var(--transition-fast);
+}
+
+.coupon-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+}
+
+.coupon-apply-btn {
+  flex-shrink: 0;
+  padding: 10px 14px !important;
+  font-size: 0.82rem !important;
+}
+
+.coupon-success {
+  font-size: 0.82rem;
+  color: #0f766e;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Guarantee Banner */
+.guarantee-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(73, 187, 189, 0.05);
+  border: 1px solid rgba(73, 187, 189, 0.15);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.guarantee-banner svg {
+  color: var(--accent-primary);
+  flex-shrink: 0;
 }
 
 .guarantee-text {
   display: block;
   text-align: center;
   font-size: 0.75rem;
-  color: #6a6f73;
-  margin-bottom: 24px;
-}
-
-/* Purchase Features list */
-.purchase-features-list {
-  border-top: 1px solid #d1d7dc;
-  padding-top: 20px;
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 
+/* Purchase Features */
+.purchase-features-list {
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+  margin-bottom: 16px;
+}
+
 .features-title {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
 }
 
 .purchase-features-list .feature-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-size: 0.85rem;
-  color: #1c1d1f;
+  color: var(--text-secondary);
   margin-bottom: 10px;
 }
 
 .purchase-features-list .feature-item svg {
-  color: #6a6f73;
+  color: var(--accent-primary);
   flex-shrink: 0;
 }
 
+/* Share Row */
 .share-course-row {
+  border-top: 1px solid var(--border-color);
+  padding-top: 14px;
   display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #d1d7dc;
-  padding-top: 16px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  justify-content: center;
 }
 
-.coupon-code {
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--accent-primary);
+  background: none;
+  border: none;
   cursor: pointer;
   text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
 }
 
-/* Responsiveness */
+.share-btn:hover {
+  color: #3ca8aa;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .course-main-layout {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .course-right-column {
     position: static;
-    max-width: 480px;
+    max-width: 520px;
     margin: 0 auto;
+    width: 100%;
   }
-  
+
   .what-learn-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
+  .course-banner-hero {
+    padding: 40px 0 36px;
+    background-position: center center;
+  }
+
   .course-header-title {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
   }
-  
+
   .course-header-subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
-  
-  .course-banner-dark {
-    padding: 24px 0;
+
+  .purchase-card-body {
+    padding: 20px;
   }
-  
-  .purchase-sticky-box {
-    margin: 0;
+
+  .discount-price {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-banner-hero {
+    padding: 32px 0 28px;
+  }
+
+  .course-header-title {
+    font-size: 1.5rem;
+  }
+
+  .course-header-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .what-learn-card,
+  .requirements-card,
+  .description-card {
+    padding: 20px 16px;
+  }
+
+  .purchase-card-body {
+    padding: 18px 16px;
+  }
+
+  .syllabus-section-header {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .section-meta-right {
+    padding-left: 28px;
   }
 }
